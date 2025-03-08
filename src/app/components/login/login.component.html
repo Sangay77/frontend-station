@@ -1,0 +1,41 @@
+<app-header></app-header>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card p-4 shadow-lg rounded custom-card">
+    <h3 class="text-center mb-4 text-primary"><i class="fas fa-sign-in-alt"></i> Login</h3>
+
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+      
+      <!-- Username Field -->
+      <div class="mb-4 input-group">
+        <span class="input-group-text"><i class="fas fa-user"></i></span>
+        <input type="text" class="form-control" placeholder="Username" [(ngModel)]="usermodel.username" name="username" required #username="ngModel">
+      </div>
+      <div *ngIf="username.invalid && username.touched" class="text-danger small">Valid Username is required</div>
+
+      <!-- Password Field -->
+      <div class="mb-4 input-group">
+        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+        <input type="password" class="form-control" placeholder="Password" [(ngModel)]="usermodel.password" name="password" required #password="ngModel">
+      </div>
+      <div *ngIf="password.invalid && password.touched" class="text-danger small">Password is required</div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary w-100 py-2 custom-btn" [disabled]="loginForm.invalid || loading">
+        <i class="fas fa-sign-in-alt"></i> {{ loading ? 'Logging in...' : 'Login' }}
+      </button>
+
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="mt-4 alert alert-danger">
+        <strong><i class="fas fa-exclamation-circle"></i> Error!</strong>
+        <p>{{ errorMessage }}</p>
+      </div>
+
+      <!-- Success Message -->
+      <div *ngIf="successMessage" class="mt-4 alert alert-success">
+        <strong><i class="fas fa-check-circle"></i> Success!</strong>
+        <p>{{ successMessage }}</p>
+      </div>
+    </form>
+  </div>
+</div>
+<app-footer></app-footer>

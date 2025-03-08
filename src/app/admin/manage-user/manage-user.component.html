@@ -1,0 +1,41 @@
+<div class="user-list-container">
+    <h2>Registered Users</h2>
+
+    <!-- Success & Error Messages -->
+    <div *ngIf="successMessage" class="alert success-alert">
+        {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="alert error-alert">
+        {{ errorMessage }}
+    </div>
+
+    <table *ngIf="users.length > 0; else noUsers">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <button class="edit-btn" (click)="editUser(user)">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+            <button class="delete-btn" (click)="deleteUser(user.id)">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #noUsers>
+      <p class="no-users-message">No users found.</p>
+    </ng-template>
+</div>

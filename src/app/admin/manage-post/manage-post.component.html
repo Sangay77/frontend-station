@@ -1,0 +1,90 @@
+<div class="container mt-4">
+    <h2>Manage Posts</h2>
+  
+    <!-- Success/Error Message -->
+    <div *ngIf="message" class="alert" [ngClass]="{'alert-success': !error, 'alert-danger': error}">
+      {{ message }}
+    </div>
+  
+    <!-- Add Post Button -->
+    <button class="btn btn-primary mb-3" (click)="openAddPostModal()">
+      <i class="fas fa-plus"></i> Add Post
+    </button>
+  
+    <!-- List all posts -->
+    <div *ngIf="posts.length > 0; else noPosts">
+      <div *ngFor="let post of posts" class="post-item card mb-3">
+        <div class="card-body">
+          <h4 class="card-title">{{ post.serviceName }}</h4>
+          <p class="card-text">{{ post.description }}</p>
+          <p class="card-text">
+            <strong>Eco-Friendly:</strong> {{ post.ecoFriendly ? 'Yes' : 'No' }}
+          </p>
+          <button (click)="openEditPostModal(post)" class="btn btn-warning btn-sm">
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button (click)="deletePost(post.id)" class="btn btn-danger btn-sm ms-2">
+            <i class="fas fa-trash"></i> Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- No Posts Message -->
+    <ng-template #noPosts>
+      <p class="text-muted">No posts found.</p>
+    </ng-template>
+  
+    <!-- Add/Edit Post Modal -->
+    <div *ngIf="isModalOpen" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ isEditing ? 'Edit Post' : 'Add Post' }}</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="isEditing ? updatePost() : addPost()" #postForm="ngForm">
+            <div class="mb-3">
+              <label for="serviceName" class="form-label">Service Name</label>
+              <input
+                type="text"
+                id="serviceName"
+                class="form-control"
+                [(ngModel)]="currentPost.serviceName"
+                name="serviceName"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea
+                id="description"
+                class="form-control"
+                [(ngModel)]="currentPost.description"
+                name="description"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+            <div class="mb-3 form-check">
+              <input
+                type="checkbox"
+                id="ecoFriendly"
+                class="form-check-input"
+                [(ngModel)]="currentPost.ecoFriendly"
+                name="ecoFriendly"
+              />
+              <label for="ecoFriendly" class="form-check-label">Eco-Friendly Service</label>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="postForm.invalid">
+              {{ isEditing ? 'Update' : 'Add' }}
+            </button>
+            <button type="button" class="btn btn-secondary ms-2" (click)="closeModal()">
+              Cancel
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

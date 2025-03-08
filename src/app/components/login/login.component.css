@@ -1,0 +1,43 @@
+.custom-card {
+  width: 100%;
+  max-width: 400px;
+  background-color: #ffffff;
+  border: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+.custom-card:hover {
+  transform: scale(1.02);
+}
+
+.custom-btn {
+  background-color: #007bff;
+  border: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.custom-btn:hover {
+  background-color: #0056b3;
+}
+
+.input-group-text {
+  background-color: #f8f9fa;
+  border-right: none;
+}
+
+.form-control {
+  border-left: none;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #007bff;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .custom-card {
+    padding: 2rem;
+    width: 90%;
+  }
+}

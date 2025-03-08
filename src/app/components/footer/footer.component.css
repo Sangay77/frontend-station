@@ -1,0 +1,41 @@
+.footer {
+    background: #343a40;
+    color: #fff;
+    padding: 40px 0;
+  }
+  
+  .footer-heading {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-links li,
+  .footer-contact li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-links a,
+  .footer-contact a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .footer-links a:hover,
+  .footer-contact a:hover {
+    color: #ffc107;
+  }
+  
+  .social-icons .social-icon {
+    color: #fff;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+  }
+  
+  .social-icons .social-icon:hover {
+    color: #ffc107;
+  }
+  
+  .footer-copyright {
+    margin-top: 20px;
+    font-size: 0.875rem;
+  }

@@ -1,0 +1,64 @@
+<app-header></app-header>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card p-4 shadow-lg rounded custom-card">
+    <h3 class="text-center mb-4 text-primary"><i class="fas fa-user-plus"></i> Register</h3>
+
+    <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+      
+      <!-- Username Field -->
+      <div class="mb-4 input-group">
+        <span class="input-group-text"><i class="fas fa-user"></i></span>
+        <input type="text" class="form-control" placeholder="Username" [(ngModel)]="usermodel.username" name="username" required #username="ngModel">
+      </div>
+      <div *ngIf="username.invalid && username.touched" class="text-danger small">Username is required</div>
+
+      <!-- Email Field -->
+      <div class="mb-4 input-group">
+        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+        <input type="email" class="form-control" placeholder="Email" [(ngModel)]="usermodel.email" name="email" required #email="ngModel">
+      </div>
+      <div *ngIf="email.invalid && email.touched" class="text-danger small">Valid email is required</div>
+
+      <!-- Password Field -->
+      <div class="mb-4 input-group">
+        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+        <input type="password" class="form-control" placeholder="Password" [(ngModel)]="usermodel.password" name="password" required #password="ngModel">
+      </div>
+      <div *ngIf="password.invalid && password.touched" class="text-danger small">Password is required</div>
+
+      <!-- Confirm Password Field -->
+      <div class="mb-4 input-group">
+        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+        <input type="password" class="form-control" placeholder="Confirm Password" [(ngModel)]="confirmPassword" name="confirmPassword" required #confirmPasswordInput="ngModel">
+      </div>
+      <div *ngIf="confirmPasswordInput.invalid && confirmPasswordInput.touched" class="text-danger small">Confirm Password is required</div>
+      <div *ngIf="usermodel.password !== confirmPassword && confirmPasswordInput.touched" class="text-danger small">Passwords do not match</div>
+
+      <!-- Address Field -->
+      <div class="mb-4 input-group">
+        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+        <input type="text" class="form-control" placeholder="Address" [(ngModel)]="usermodel.address" name="address" required #address="ngModel">
+      </div>
+      <div *ngIf="address.invalid && address.touched" class="text-danger small">Address is required</div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary w-100 py-2 custom-btn" 
+        [disabled]="registerForm.invalid || usermodel.password !== confirmPassword || loading">
+        <i class="fas fa-user-plus"></i> {{ loading ? 'Registering...' : 'Register' }}
+      </button>
+
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="mt-4 alert alert-danger">
+        <strong><i class="fas fa-exclamation-circle"></i> Error!</strong>
+        <p>{{ errorMessage }}</p>
+      </div>
+
+      <!-- Success Message -->
+      <div *ngIf="successMessage" class="mt-4 alert alert-success">
+        <strong><i class="fas fa-check-circle"></i> Success!</strong>
+        <p>{{ successMessage }}</p>
+      </div>
+    </form>
+  </div>
+</div>
+<app-footer></app-footer>

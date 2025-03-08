@@ -1,0 +1,27 @@
+/* Admin Layout Styling */
+.container-fluid {
+    padding: 0;
+  }
+  
+  .row {
+    margin: 0;
+  }
+  
+  .col-md-3 {
+    padding: 0;
+  }
+  
+  .col-md-9 {
+    padding: 20px;
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .col-md-3 {
+      width: 100%;
+    }
+  
+    .col-md-9 {
+      width: 100%;
+    }
+  }

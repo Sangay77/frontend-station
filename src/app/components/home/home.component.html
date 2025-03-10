@@ -16,6 +16,7 @@
       </div>
     </div>
   </section>
+
   <section class="services-section">
     <div class="container">
       <h2>Our Services</h2>
@@ -27,15 +28,24 @@
               <fa-icon [icon]="faBroom"></fa-icon> <!-- Icon placeholder -->
             </div>
             <h3>{{ post.title }}</h3> <!-- Use post.title instead of post.serviceName -->
-            <p>{{ post.content }}</p> <!-- Use post.content instead of post.description -->
+  
+            <!-- Display post content with Read More / Read Less toggle -->
             <p>
-              <strong>Category:</strong> {{ post.postCategory.name }}
+              {{ post.showFullContent ? post.content : (post.content | slice:0:50) }} <!-- Display full or preview content -->
+              <span (click)="toggleReadMore(post)" style="cursor: pointer; color: blue;">
+                {{ post.showFullContent ? 'Read Less' : 'Read More' }}
+              </span>
             </p>
+  
+            <p><strong>Category:</strong> {{ post.postCategory.name }}</p>
           </div>
         </div>
       </div>
     </div>
   </section>
+  
+
+
   <!-- Testimonials Section -->
   <section class="testimonials-section">
     <div class="container">

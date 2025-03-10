@@ -40,4 +40,8 @@ export class HomeComponent {
     });
   }
 
+  toggleReadMore(post: Post): void {
+    post.showFullContent = !post.showFullContent; // Toggle content visibility
+  }
+
 }

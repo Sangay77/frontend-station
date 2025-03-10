@@ -1,0 +1,26 @@
+<header class="dashboard-header">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <!-- Logo or Brand -->
+        <div class="col-md-3 col-6">
+          <a class="navbar-brand" href="/">
+            <img src="assets/logo.png" alt="Logo" width="120" />
+          </a>
+        </div>
+  
+        <!-- Message -->
+        <div class="col-md-6 col-12 text-center">
+          <p *ngIf="message" class="message-text">
+            {{ message }}
+          </p>
+        </div>
+  
+        <!-- Logout Option -->
+        <div class="col-md-3 col-6 text-end">
+          <button class="btn btn-outline-light" (click)="onLogout()">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>

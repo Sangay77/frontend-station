@@ -1,189 +1,157 @@
-/* Hero Section */
-.hero-section {
-    /* background: url('../../../assets/images/log.jpg') no-repeat center center/cover; */
-    color: #fff;
-    padding: 150px 0;
-    text-align: center;
-    position: relative;
-}
-
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text visibility */
-}
-
-.hero-content {
-    position: relative;
-    z-index: 1;
-}
-
-.hero-section h1 {
-    font-size: 3.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-}
-
-.hero-section .lead {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    color: #f8f9fa; /* Light gray text */
-}
-
-.cta-buttons .btn {
-    margin: 0 10px;
-    padding: 10px 20px;
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  h1, h2, h3 {
+    font-weight: 700;
+  }
+  
+  p {
     font-size: 1.1rem;
-    border-radius: 5px;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+  }
+  
+  .hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .hero-content .lead {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+  }
+  
+  .cta-buttons .btn {
+    margin: 10px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 25px;
     transition: all 0.3s ease;
-}
-
-.cta-buttons .btn-primary {
-    background-color: #007bff; /* Blue */
-    border: 2px solid #007bff;
-    color: #fff;
-}
-
-.cta-buttons .btn-primary:hover {
-    background-color: #0056b3; /* Darker blue */
-    border-color: #0056b3;
-}
-
-.cta-buttons .btn-secondary {
-    background-color: #28a745; /* Green */
-    border: 2px solid #28a745;
-    color: #fff;
-}
-
-.cta-buttons .btn-secondary:hover {
-    background-color: #218838; /* Darker green */
-    border-color: #218838;
-}
-
-.cta-buttons .btn-tertiary {
-    background-color: #dc3545; /* Red */
-    border: 2px solid #dc3545;
-    color: #fff;
-}
-
-.cta-buttons .btn-tertiary:hover {
-    background-color: #c82333; /* Darker red */
-    border-color: #c82333;
-}
-
-/* Services Section */
-.services-section {
+  }
+  
+  .cta-buttons .btn-primary {
+    background: #007bff;
+    border: none;
+  }
+  
+  .cta-buttons .btn-secondary {
+    background: #6c757d;
+    border: none;
+  }
+  
+  .cta-buttons .btn-tertiary {
+    background: #28a745;
+    border: none;
+  }
+  
+  .cta-buttons .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Services Section */
+  .services-section {
     padding: 80px 0;
-    background: #f8f9fa;
-}
-
-.services-section h2 {
-    text-align: center;
-    margin-bottom: 50px;
-    font-size: 2.5rem;
-    font-weight: bold;
-}
-
-.service-card {
+    background: #f9f9f9;
+  }
+  
+  .service-card {
     background: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.service-card:hover {
-    transform: translateY(-10px);
-}
-
-.service-icon {
-    font-size: 3rem;
-    color: #007bff;
-    margin-bottom: 1rem;
-}
-
-.service-card h3 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-}
-
-.service-card p {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 1.5rem;
-}
-
-.service-card .btn {
-    font-size: 1rem;
-    padding: 8px 20px;
-}
-
-/* Testimonials Section */
-.testimonials-section {
-    padding: 80px 0;
-    background: #fff;
-}
-
-.testimonials-section h2 {
-    text-align: center;
-    margin-bottom: 50px;
-    font-size: 2.5rem;
-    font-weight: bold;
-}
-
-.testimonial-card {
-    background: #f8f9fa;
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.testimonial-card p {
-    font-size: 1rem;
-    color: #333;
-    margin-bottom: 1rem;
-}
-
-.testimonial-card .author {
-    font-size: 0.9rem;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .service-icon {
+    font-size: 2.5rem;
     color: #007bff;
-    font-weight: bold;
-}
-
-/* Call-to-Action Section */
-.cta-section {
-    background: #418dd9;
+    margin-bottom: 15px;
+  }
+  
+  .action-buttons .btn {
+    margin: 5px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  /* Testimonials Section */
+  .testimonials-section {
+    padding: 80px 0;
+    background: #fff;
+  }
+  
+  .testimonial-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .testimonial-card p {
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  
+  .testimonial-card .author {
+    font-weight: 600;
+    color: #007bff;
+  }
+  
+  /* Call-to-Action Section */
+  .cta-section {
+    background: #007bff;
     color: #fff;
     padding: 80px 0;
     text-align: center;
-}
-
-.cta-section h2 {
+  }
+  
+  .cta-section h2 {
     font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-}
-
-.cta-section p {
+    margin-bottom: 20px;
+  }
+  
+  .cta-section p {
     font-size: 1.2rem;
-    margin-bottom: 2rem;
-}
-
-.cta-section .btn {
-    font-size: 1.1rem;
-    padding: 10px 30px;
+    margin-bottom: 30px;
+  }
+  
+  .cta-section .btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 25px;
     background: #fff;
     color: #007bff;
-    border: none;
-}
-
-.cta-section .btn:hover {
+    transition: all 0.3s ease;
+  }
+  
+  .cta-section .btn:hover {
     background: #f8f9fa;
-}
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }

@@ -1,0 +1,49 @@
+/* Dashboard Header Container */
+.dashboard-header {
+    background: linear-gradient(145deg, #13c1ec, #2c3e50); /* Gradient background */
+    color: #fff; /* White text color */
+    padding: 10px 0; /* Padding inside the header */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    position: sticky; /* Make header sticky */
+    top: 0;
+    z-index: 1000; /* Ensure header is above other content */
+  }
+  
+  /* Message Text */
+  .message-text {
+    font-size: 0.9rem; /* Smaller font size */
+    margin: 0; /* Remove default margin */
+    color: #fff; /* White text color */
+  }
+  
+  /* Logout Button */
+  .btn-outline-light {
+    border-color: #fff; /* White border */
+    color: #fff; /* White text */
+    transition: all 0.3s ease; /* Smooth hover transition */
+  }
+  
+  .btn-outline-light:hover {
+    background: #fff; /* White background on hover */
+    color: #2c3e50; /* Dark text on hover */
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .dashboard-header {
+      padding: 10px; /* Reduce padding on smaller screens */
+    }
+  
+    .navbar-brand img {
+      width: 100px; /* Reduce logo size on smaller screens */
+    }
+  
+    .message-text {
+      font-size: 0.8rem; /* Reduce font size on smaller screens */
+    }
+  
+    .btn-outline-light {
+      padding: 5px 10px; /* Reduce button padding on smaller screens */
+      font-size: 0.8rem; /* Reduce button font size on smaller screens */
+    }
+  }

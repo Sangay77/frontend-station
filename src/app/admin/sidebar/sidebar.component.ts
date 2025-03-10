@@ -51,23 +51,4 @@ export class SidebarComponent {
       this.message = 'Please log in to continue.';  // Prompt for login
     }
   }
-
-
-
-  onLogout() {
-    console.log('Attempting logout...');
-
-    this.authService.logout().subscribe({
-      next: (response) => {
-        console.log('Logout response:', response);
-        localStorage.removeItem('username');  // Clear the username from localStorage
-        this.username = null;  // Reset username in the component
-        this.router.navigate(['/login']); // Redirect to login after logout
-      },
-      error: (error) => {
-        console.error('Logout error:', error);
-        this.router.navigate(['/login']); // Redirect to login even on error
-      }
-    });
-  }
 }

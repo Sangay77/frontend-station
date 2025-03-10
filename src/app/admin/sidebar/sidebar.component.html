@@ -1,59 +1,60 @@
 <div class="sidebar">
+    <!-- Sidebar Toggle Button (Visible on Small Screens) -->
+    <button
+      class="sidebar-toggler d-md-none"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#sidebarCollapse"
+      aria-controls="sidebarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle sidebar"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <!-- Sidebar Content -->
     <div class="sidebar-header">
-            <div class="sidebar-message mt-3">
-                <p *ngIf="message" class="text-white bg-success p-2 rounded">
-                    {{ message }}
-                </p>
-            </div>
-        <button class="d-md-none btn btn-link text-white">
-        </button>
+      <h3>Admin Panel</h3>
     </div>
-
+  
     <!-- Main Menu -->
     <ul class="nav flex-column">
-        
-        <li class="nav-item">
-            <a href="admin/users" class="nav-link">
-                <fa-icon [icon]="faProduct" class="me-2"></fa-icon>
-                Add Products
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="/admin/users" class="nav-link">
-                <fa-icon [icon]="faService" class="me-2"></fa-icon>
-                Add Services
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="/admin/users" class="nav-link">
-                <fa-icon [icon]="faUser" class="me-2"></fa-icon>
-                Manage Users
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="/admin/posts" class="nav-link">
-                <fa-icon [icon]="faPost" class="me-2"></fa-icon>
-                Manage Post
-            </a>
-        </li>
+      <li class="nav-item">
+        <a href="admin/users" class="nav-link">
+          <fa-icon [icon]="faProduct" class="me-2"></fa-icon>
+          Add Products
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/admin/users" class="nav-link">
+          <fa-icon [icon]="faService" class="me-2"></fa-icon>
+          Add Services
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/admin/users" class="nav-link">
+          <fa-icon [icon]="faUser" class="me-2"></fa-icon>
+          Manage Users
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/admin/posts" class="nav-link">
+          <fa-icon [icon]="faPost" class="me-2"></fa-icon>
+          Manage Posts
+        </a>
+      </li>
     </ul>
-
+  
     <!-- Divider -->
-    <hr class="sidebar-divider">
-
+    <hr class="sidebar-divider" />
+  
     <!-- Footer Links -->
     <ul class="nav flex-column mt-auto">
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <fa-icon [icon]="faCogs" class="me-2"></fa-icon>
-                Settings
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link" (click)="onLogout()">
-                <fa-icon [icon]="faSignOut" class="me-2"></fa-icon>
-                Logout
-            </a>
-        </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <fa-icon [icon]="faCogs" class="me-2"></fa-icon>
+          Settings
+        </a>
+      </li>
     </ul>
-</div>
+  </div>

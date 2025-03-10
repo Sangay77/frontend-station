@@ -1,25 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container">
-    <!-- Logo -->
+
     <a class="navbar-brand" href="/">
-      <img src="../../assets/s.jpg" alt="Logo" width="120" />
+      <fa-icon [icon]="faHome"></fa-icon> <!-- Home icon -->
+      Home
     </a>
-
-    <!-- Search Bar -->
-    <div class="search-bar mx-auto">
-      <form class="d-flex">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search products..."
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-primary" type="submit">
-          <i class="fas fa-search"></i>
-        </button>
-      </form>
-    </div>
-
     <!-- Navbar Toggler for Mobile -->
     <button
       class="navbar-toggler"
@@ -33,16 +18,26 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Navigation Links -->
+    <!-- Navigation Links and Search Bar -->
     <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Search Bar -->
+      <div class="search-bar mx-auto my-2 my-lg-0">
+        <form class="d-flex">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search products..."
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-primary" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </div>
+
+      <!-- Navigation Links -->
       <ul class="navbar-nav ms-auto">
-        <!-- Cart -->
-        <li class="nav-item">
-          <a class="nav-link" href="/cart">
-            <i class="fas fa-shopping-cart"></i> Cart
-            <span class="badge bg-primary">0</span>
-          </a>
-        </li>
+        
 
         <!-- Login/Register -->
         <li class="nav-item">

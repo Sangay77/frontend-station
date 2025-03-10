@@ -1,7 +1,8 @@
+import { PostCategory } from "./postCategory";
+
 export interface Post {
-    id: number;
-    serviceName: string;
-    description: string;
-    ecoFriendly: boolean;
-  }
-  
+  id: number;
+  title: string;
+  content: string;
+  postCategory: PostCategory; // postCategory is an object
+}

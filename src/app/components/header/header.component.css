@@ -1,75 +1,113 @@
-/* Navbar Styling */
+/* Navbar Styles */
 .navbar {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 1rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 15px 0;
+  background: #fff !important;
 }
 
-/* Logo Styling */
-.navbar-brand img {
+.navbar-brand .logo {
   transition: transform 0.3s ease;
 }
 
-.navbar-brand img:hover {
+.navbar-brand .logo:hover {
   transform: scale(1.1);
 }
 
-/* Search Bar Styling */
+/* Search Bar */
 .search-bar {
-  max-width: 500px;
+  max-width: 400px;
   width: 100%;
 }
 
-.search-bar input {
-  border-radius: 20px;
+.search-bar .form-control {
+  border-radius: 25px;
+  padding: 10px 20px;
+  border: 1px solid #ddd;
 }
 
-.search-bar button {
-  border-radius: 20px;
-  margin-left: 0.5rem;
+.search-bar .btn-outline-primary {
+  border-radius: 25px;
+  padding: 10px 20px;
+  margin-left: 10px;
+  transition: all 0.3s ease;
 }
 
-/* Navigation Links Styling */
-.nav-link {
+.search-bar .btn-outline-primary:hover {
+  background: #007bff;
+  color: #fff;
+}
+
+/* Navigation Links */
+.navbar-nav .nav-item {
+  margin-left: 15px;
+}
+
+.navbar-nav .nav-link {
+  color: #333 !important;
   font-weight: 500;
-  color: #333;
-  margin: 0 0.5rem;
-  transition: color 0.3s ease;
+  padding: 8px 15px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
 }
 
-.nav-link:hover {
-  color: #007bff;
+.navbar-nav .nav-link:hover {
+  background: #007bff;
+  color: #fff !important;
 }
 
-/* Dropdown Menu Styling */
-.dropdown-menu {
-  border: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.navbar-nav .nav-link i {
+  margin-right: 5px;
 }
 
-.dropdown-item {
-  padding: 0.5rem 1rem;
-  color: #333;
-  transition: background-color 0.3s ease;
-}
-
-.dropdown-item:hover {
-  background-color: #f8f9fa;
-  color: #007bff;
-}
-
-/* Badge Styling */
-.badge {
+/* Badge for Cart */
+.navbar-nav .badge {
   font-size: 0.8rem;
-  margin-left: 0.3rem;
+  margin-left: 5px;
+  vertical-align: middle;
 }
 
-/* Responsive Styling */
+/* Mobile Toggler Icon */
+.navbar-toggler {
+  border: none;
+  padding: 10px;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 992px) {
   .search-bar {
-    margin: 1rem 0;
+    margin: 15px 0;
+    max-width: 100%;
   }
 
   .navbar-nav {
-    margin-top: 1rem;
+    margin-top: 15px;
+  }
+
+  .navbar-nav .nav-item {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 10px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-brand .logo {
+    width: 100px;
+  }
+
+  .search-bar .form-control {
+    padding: 8px 15px;
+  }
+
+  .search-bar .btn-outline-primary {
+    padding: 8px 15px;
   }
 }

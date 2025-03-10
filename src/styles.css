@@ -1,2 +1,82 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+/* Ensure HTML and body take full height */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif; /* Use a modern font */
+  }
+  
+  /* Ensure container-fluid and row take full height */
+  .container-fluid, .row {
+    height: 100%;
+  }
+  
+  /* Main Content Area */
+  .col-md-9 {
+    padding: 20px;
+    overflow-y: auto; /* Enable scrolling for long content */
+    height: 100%; /* Take full height of parent */
+    background-color: #f8f9fa; /* Light background for main content */
+  }
+  
+  /* Overlay for Small Screens */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 999; /* Below sidebar but above other content */
+    display: none; /* Hidden by default */
+  }
+  
+  #sidebarCollapse.show + .sidebar-overlay {
+    display: block; /* Show overlay when sidebar is open */
+  }
+  
+  /* Sidebar Toggle Button */
+  .navbar-toggler {
+    display: none; /* Hide toggle button by default */
+    margin: 10px; /* Add some spacing */
+    background-color: #007bff; /* Blue background for the button */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 8px 12px; /* Add padding */
+  }
+  
+  .navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* White icon */
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .navbar-toggler {
+      display: block; /* Show toggle button on small screens */
+      position: fixed; /* Fix toggle button position */
+      top: 10px;
+      left: 10px;
+      z-index: 1001; /* Ensure toggle button is above sidebar */
+    }
+  
+    .col-md-9 {
+      padding: 10px; /* Reduce padding on smaller screens */
+    }
+  
+    #sidebarCollapse {
+      position: fixed; /* Fix sidebar position on small screens */
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 1000; /* Ensure sidebar is above other content */
+      background: #2c3e50; /* Match sidebar background */
+      overflow-y: auto; /* Enable scrolling for long content */
+      transform: translateX(-100%); /* Hide sidebar by default */
+      transition: transform 0.3s ease; /* Smooth slide-in animation */
+    }
+  
+    #sidebarCollapse.show {
+      transform: translateX(0); /* Show sidebar when toggled */
+    }
+  }

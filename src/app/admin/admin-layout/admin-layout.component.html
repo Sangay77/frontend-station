@@ -1,13 +1,22 @@
-<div class="container-fluid">
-    <!-- Sidebar and content layout -->
-    <div class="row">
-        <div class="col-md-3 col-12">
-            <app-sidebar></app-sidebar> <!-- Sidebar component -->
+<div class="admin-layout">
+    <!-- Header -->
+  
+<app-dashboardheader></app-dashboardheader>
+  
+    <div class="container-fluid h-100">
+      <div class="row h-100">
+        <!-- Sidebar -->
+        <div class="col-md-3 col-12 collapse d-md-block h-100 p-0" id="sidebarCollapse">
+          <app-sidebar></app-sidebar> <!-- Sidebar component -->
         </div>
-        <div class="col-md-9 col-12">
-            <router-outlet></router-outlet> <!-- Dynamic content -->
+  
+        <!-- Main Content -->
+        <div class="col-md-9 col-12 main-content">
+          <router-outlet></router-outlet> <!-- Dynamic content -->
         </div>
+      </div>
     </div>
-</div>
-
-
+  
+    <!-- Overlay for Small Screens -->
+    <div class="sidebar-overlay" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse"></div>
+  </div>

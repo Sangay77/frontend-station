@@ -1,99 +1,75 @@
 <app-header></app-header>
 <main>
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-          <div class="hero-content">
-            <h1>Welcome to Station</h1>
-            <p class="lead">To create a one-stop hub offering a diverse range of services that meet both everyday and specialized needs of our customers, including high-quality cleaning, great dining and entertainment, and reliable automotive services</p>
-            <div class="cta-buttons">
-              <a routerLink="/ecopure" class="btn btn-primary">Explore EcoPure</a>
-              <a routerLink="/druk-station" class="btn btn-secondary">Visit Druk Station</a>
-              <a routerLink="/workshop" class="btn btn-tertiary">Learn About Workshop</a>
-            </div>
-          </div>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Welcome to Station</h1>
+        <p class="lead">
+          To create a one-stop hub offering a diverse range of services that meet both everyday and specialized needs of our customers, including high-quality cleaning, great dining and entertainment, and reliable automotive services.
+        </p>
+        <div class="cta-buttons">
+          <a routerLink="/ecopure" class="btn btn-primary">Explore EcoPure</a>
+          <a routerLink="/druk-station" class="btn btn-secondary">Visit Druk Station</a>
+          <a routerLink="/workshop" class="btn btn-tertiary">Learn About Workshop</a>
         </div>
-      </section>
-  
-  <!-- Services Section -->
+      </div>
+    </div>
+  </section>
   <section class="services-section">
     <div class="container">
       <h2>Our Services</h2>
       <div class="row">
-        <!-- Loop through posts dynamically -->
+        <!-- Loop through posts -->
         <div *ngFor="let post of posts" class="col-md-4">
           <div class="service-card">
             <div class="service-icon">
               <fa-icon [icon]="faBroom"></fa-icon> <!-- Icon placeholder -->
             </div>
-            <h3>{{ post.serviceName }}</h3>
-            <p>{{ post.description }}</p>
+            <h3>{{ post.title }}</h3> <!-- Use post.title instead of post.serviceName -->
+            <p>{{ post.content }}</p> <!-- Use post.content instead of post.description -->
             <p>
-              <strong>Eco-Friendly:</strong> 
-              {{ post.ecoFriendly ? 'Yes' : 'No' }}
+              <strong>Category:</strong> {{ post.postCategory.name }}
             </p>
-            <a routerLink="/services/{{ post.id }}" class="btn btn-outline-primary">Learn More</a>
-            
-            <!-- Like and Comment Section -->
-            <div class="action-buttons">
-              <!-- Like Button -->
-              <button (click)="likePost(post.id)" class="btn btn-outline-success">
-                <i class="fa fa-thumbs-up"></i> Like
-              </button>
-              
-              <!-- Comment Button -->
-              <button (click)="openCommentSection(post.id)" class="btn btn-outline-info">
-                <i class="fa fa-comment"></i> Comment
-              </button>
-            </div>
-  
-            <!-- Conditional comment form (optional, you can customize this part) -->
-            <div  class="comment-section">
-              <textarea  placeholder="Add a comment..." class="form-control"></textarea>
-              <button (click)="submitComment(post.id)" class="btn btn-primary mt-2">Submit Comment</button>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  
-
-  
-    <!-- Testimonials Section -->
-    <section class="testimonials-section">
-      <div class="container">
-        <h2>What Our Customers Say</h2>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="testimonial-card">
-              <p>"EcoPure did an amazing job cleaning our office. Highly recommend their services!"</p>
-              <p class="author">- John Doe</p>
-            </div>
+  <!-- Testimonials Section -->
+  <section class="testimonials-section">
+    <div class="container">
+      <h2>What Our Customers Say</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <p>"EcoPure did an amazing job cleaning our office. Highly recommend their services!"</p>
+            <p class="author">- John Doe</p>
           </div>
-          <div class="col-md-4">
-            <div class="testimonial-card">
-              <p>"Druk Station is my favorite spot for dinner and karaoke. Great food and atmosphere!"</p>
-              <p class="author">- Jane Smith</p>
-            </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <p>"Druk Station is my favorite spot for dinner and karaoke. Great food and atmosphere!"</p>
+            <p class="author">- Jane Smith</p>
           </div>
-          <div class="col-md-4">
-            <div class="testimonial-card">
-              <p>"The Station Workshop team fixed my car quickly and at a reasonable price. Thank you!"</p>
-              <p class="author">- Mike Johnson</p>
-            </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <p>"The Station Workshop team fixed my car quickly and at a reasonable price. Thank you!"</p>
+            <p class="author">- Mike Johnson</p>
           </div>
         </div>
       </div>
-    </section>
-  
-    <!-- Call-to-Action Section -->
-    <section class="cta-section">
-      <div class="container">
-        <h2>Ready to Experience Station?</h2>
-        <p>Join us today and discover the best in cleaning, dining, and automotive services.</p>
-        <a routerLink="/contact" class="btn btn-primary">Contact Us</a>
-      </div>
-    </section>
-  </main>
-  <app-footer></app-footer>
+    </div>
+  </section>
+
+  <!-- Call-to-Action Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Experience Station?</h2>
+      <p>Join us today and discover the best in cleaning, dining, and automotive services.</p>
+      <a routerLink="/contact" class="btn btn-primary">Contact Us</a>
+    </div>
+  </section>
+</main>
+<app-footer></app-footer>

@@ -1,27 +1,36 @@
-/* Admin Layout Styling */
-.container-fluid {
-    padding: 0;
-  }
-  
-  .row {
-    margin: 0;
-  }
-  
-  .col-md-3 {
-    padding: 0;
-  }
-  
-  .col-md-9 {
-    padding: 20px;
-  }
-  
-  /* Responsive Styling */
-  @media (max-width: 768px) {
-    .col-md-3 {
-      width: 100%;
-    }
-  
-    .col-md-9 {
-      width: 100%;
-    }
-  }
+/* Admin Layout Container */
+.admin-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure layout takes full viewport height */
+  background-color: #f8f9fa; /* Light background for the layout */
+}
+
+/* Full Height for Container and Row */
+.container-fluid.h-100, .row.h-100 {
+  height: 100%; /* Ensure container and row take full height */
+}
+
+/* Main Content Area */
+.main-content {
+  flex-grow: 1; /* Take remaining space */
+  padding: 20px; /* Padding inside the main content */
+  overflow-y: auto; /* Enable scrolling for long content */
+  background-color: #fff; /* White background for main content */
+}
+
+/* Overlay for Small Screens */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 999; /* Below sidebar but above other content */
+  display: none; /* Hidden by default */
+}
+
+#sidebarCollapse.show + .sidebar-overlay {
+  display: block; /* Show overlay when sidebar is open */
+}

@@ -4,6 +4,7 @@ import { Post } from '../../common/post';
 import { PostCategory } from '../../common/postCategory';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { PostCategoryService } from '../../services/post-category-service';
 
 @Component({
   selector: 'app-manage-post',
@@ -26,7 +27,7 @@ export class ManagePostComponent implements OnInit {
   message = '';
   error = false;
 
-  constructor(private postService: ManagePostService) {}
+  constructor(private postService: ManagePostService, private postCategoryService:PostCategoryService) {}
 
   ngOnInit(): void {
     console.log("Component initialized"); // Debugging
@@ -42,7 +43,7 @@ export class ManagePostComponent implements OnInit {
   }
 
   fetchCategories(): void {
-    this.postService.getCategories().subscribe({
+    this.postCategoryService.getCategories().subscribe({
       next: (data) => {
         console.log("Fetched Categories:", data); // Debugging
         this.categories = data;

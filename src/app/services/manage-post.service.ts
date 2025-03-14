@@ -9,40 +9,17 @@ import { PostCategory } from '../common/postCategory';
   providedIn: 'root',
 })
 export class ManagePostService {
-  private baseUrl = 'http://localhost:9090/posts';
-  private catUrl = 'http://localhost:9090';
-
+  private baseUrl = 'http://localhost:9090/api/v1/posts';
 
   constructor(private http: HttpClient) {}
-
-  // getAllPosts(): Observable<Post[]> {
-  //   return this.http.get<Post[]>(this.apiUrl);
-  // }
-
-
-  // getCategories(): Observable<PostCategory[]> {
-  //   return this.http.get<PostCategory[]>(`${this.catUrl}/categories`);
-  // }
-
-  // addPost(post: Post): Observable<Post> {
-  //   return this.http.post<Post>(this.apiUrl, post);
-  // }
-
-  // updatePost(id: number, post: Post): Observable<Post> {
-  //   return this.http.put<Post>(`${this.apiUrl}/${id}`, post);
-  // }
-
-  // deletePost(id: number): Observable<void> {
-  //   return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  // }
-
+ 
   getAllPosts(): Observable<Post[]> {
     return this.http.get<any>(this.baseUrl).pipe(map(response => response.data));
   }
 
-  getCategories(): Observable<PostCategory[]> {
-    return this.http.get<PostCategory[]>('http://localhost:9090/categories');
-  }
+  // getCategories(): Observable<PostCategory[]> {
+  //   return this.http.get<PostCategory[]>('http://localhost:9090/api/v1/categories');
+  // }
   
   addPost(post: Post): Observable<{ message: string; post: Post }> {
     return this.http.post<any>(this.baseUrl, post).pipe(

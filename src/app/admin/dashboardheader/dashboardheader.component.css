@@ -1,49 +1,76 @@
-/* Dashboard Header Container */
 .dashboard-header {
-    background: linear-gradient(145deg, #13c1ec, #2c3e50); /* Gradient background */
-    color: #fff; /* White text color */
-    padding: 10px 0; /* Padding inside the header */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    position: sticky; /* Make header sticky */
-    top: 0;
-    z-index: 1000; /* Ensure header is above other content */
-  }
-  
-  /* Message Text */
-  .message-text {
-    font-size: 0.9rem; /* Smaller font size */
-    margin: 0; /* Remove default margin */
-    color: #fff; /* White text color */
-  }
-  
-  /* Logout Button */
-  .btn-outline-light {
-    border-color: #fff; /* White border */
-    color: #fff; /* White text */
-    transition: all 0.3s ease; /* Smooth hover transition */
-  }
-  
-  .btn-outline-light:hover {
-    background: #fff; /* White background on hover */
-    color: #2c3e50; /* Dark text on hover */
-  }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    .dashboard-header {
-      padding: 10px; /* Reduce padding on smaller screens */
-    }
-  
-    .navbar-brand img {
-      width: 100px; /* Reduce logo size on smaller screens */
-    }
-  
-    .message-text {
-      font-size: 0.8rem; /* Reduce font size on smaller screens */
-    }
-  
-    .btn-outline-light {
-      padding: 5px 10px; /* Reduce button padding on smaller screens */
-      font-size: 0.8rem; /* Reduce button font size on smaller screens */
-    }
-  }
+  background-color: #2c3e50;
+  padding: 10px 20px;
+}
+
+.header-icons {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  font-size: 20px; /* Increase icon size for better visibility */
+  color: #ecf0f1; /* Light color for icons */
+  text-decoration: none;
+  transition: color 0.3s ease; /* Smooth transition effect */
+}
+
+/* Add hover effect to icons */
+.nav-link:hover {
+  color: #3498db; /* Blue color when hovered */
+}
+
+/* Badge styling */
+.badge {
+  position: absolute;
+  top: -5px; /* Adjust to move the badge slightly above */
+  right: -5px; /* Adjust to move the badge slightly to the right */
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 50%;
+  font-weight: bold; /* Make badge text more prominent */
+}
+
+.badge.bg-danger {
+  background-color: #e74c3c; /* Red for notification */
+}
+
+.badge.bg-info {
+  background-color: #1abc9c; /* Teal for messages */
+}
+
+.username {
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  width: 60%; /* Adjust width for better appearance */
+  margin: auto; /* Center the search bar */
+}
+
+.form-control {
+  border-radius: 5px;
+  padding: 5px 15px;
+}
+
+.btn-search {
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}

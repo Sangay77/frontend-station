@@ -1,0 +1,28 @@
+<div class="category-container">
+    <h2>Add New Category</h2>
+  
+    <form (ngSubmit)="addNewCategory()" class="category-form">
+      <div class="form-group">
+        <label for="categoryName">Category Name</label>
+        <input 
+          type="text" 
+          id="categoryName" 
+          [(ngModel)]="category.name" 
+          name="categoryName" 
+          required 
+          placeholder="Enter category name" 
+          class="form-control"
+        />
+      </div>
+  
+      <button type="submit" [disabled]="isLoading" class="btn btn-primary">
+        Add Category
+      </button>
+  
+      <div *ngIf="isLoading" class="loading-message">Adding Category...</div>
+  
+      <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    </form>
+  </div>
+  

@@ -8,17 +8,16 @@ import { faBroom, faUtensils, faCar, faHome, faEnvelope } from '@fortawesome/fre
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Post } from '../../common/post';
-
+import { PostCategory } from '../../common/postCategory';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [HeaderComponent, FooterComponent, RouterLink, FontAwesomeModule, CommonModule, FormsModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-
   faBroom = faBroom;
   faUtensils = faUtensils;
   faCar = faCar;
@@ -26,6 +25,7 @@ export class HomeComponent {
   faEnvelope = faEnvelope;
 
   posts: Post[] = [];
+  groupedPosts: { [key: string]: Post[] } = {}; // Correct type definition
 
   postService = inject(ManagePostService)
 
@@ -35,13 +35,27 @@ export class HomeComponent {
 
   fetchPosts(): void {
     this.postService.getAllPosts().subscribe({
-      next: (data) => (this.posts = data),
+      next: (data) => {
+        this.posts = data;
+        this.groupPostsByCategory(); // Group posts by category once they are fetched
+      },
       error: (err) => console.error('Error fetching posts:', err),
     });
   }
 
-  toggleReadMore(post: Post): void {
-    post.showFullContent = !post.showFullContent; // Toggle content visibility
+  groupPostsByCategory(): void {
+    // Group posts by category
+    this.groupedPosts = this.posts.reduce((groups, post) => {
+      const categoryName = post.postCategory.name;
+      if (!groups[categoryName]) {
+        groups[categoryName] = [];
+      }
+      groups[categoryName].push(post);
+      return groups;
+    }, {} as { [key: string]: Post[] }); // Casting to ensure correct type
   }
 
+  toggleReadMore(post: Post): void {
+    post.showFullContent = !post.showFullContent;
+  }
 }

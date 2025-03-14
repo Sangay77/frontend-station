@@ -1,12 +1,13 @@
 <app-header></app-header>
+
 <main>
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="container">
-      <div class="hero-content">
-        <h1>Welcome to Station</h1>
-        <p class="lead">
-          To create a one-stop hub offering a diverse range of services that meet both everyday and specialized needs of our customers, including high-quality cleaning, great dining and entertainment, and reliable automotive services.
+      <div class="hero-content text-center">
+        <h1 class="hero-title">Bhutan Financial Switch (BFS)</h1>
+        <p class="hero-description lead">
+          Create a one-stop hub offering a range of services that cater to both everyday and specialized needs, including high-quality cleaning, great dining, entertainment, and reliable automotive services.
         </p>
         <div class="cta-buttons">
           <a routerLink="/ecopure" class="btn btn-primary">Explore EcoPure</a>
@@ -17,39 +18,32 @@
     </div>
   </section>
 
-  <section class="services-section">
+  <!-- Services Section -->
+  <section *ngFor="let category of (groupedPosts | keyvalue)" class="services-section">
     <div class="container">
-      <h2>Our Services</h2>
+      <h2 class="section-title">{{ category.key }}</h2>
       <div class="row">
-        <!-- Loop through posts -->
-        <div *ngFor="let post of posts" class="col-md-4">
+        <!-- Loop through posts of this category -->
+        <div *ngFor="let post of category.value" class="col-lg-4 col-md-6">
           <div class="service-card">
-            <div class="service-icon">
-              <fa-icon [icon]="faBroom"></fa-icon> <!-- Icon placeholder -->
-            </div>
-            <h3>{{ post.title }}</h3> <!-- Use post.title instead of post.serviceName -->
-  
-            <!-- Display post content with Read More / Read Less toggle -->
+        
+            <h3>{{ post.title }}</h3>
             <p>
-              {{ post.showFullContent ? post.content : (post.content | slice:0:50) }} <!-- Display full or preview content -->
-              <span (click)="toggleReadMore(post)" style="cursor: pointer; color: blue;">
+              {{ post.showFullContent ? post.content : (post.content | slice:0:150) }}
+              <span (click)="toggleReadMore(post)" class="read-more-link">
                 {{ post.showFullContent ? 'Read Less' : 'Read More' }}
               </span>
             </p>
-  
-            <p><strong>Category:</strong> {{ post.postCategory.name }}</p>
           </div>
         </div>
       </div>
     </div>
   </section>
-  
-
 
   <!-- Testimonials Section -->
   <section class="testimonials-section">
     <div class="container">
-      <h2>What Our Customers Say</h2>
+      <h2 class="section-title">What Our Customers Say</h2>
       <div class="row">
         <div class="col-md-4">
           <div class="testimonial-card">
@@ -76,10 +70,11 @@
   <!-- Call-to-Action Section -->
   <section class="cta-section">
     <div class="container">
-      <h2>Ready to Experience Station?</h2>
-      <p>Join us today and discover the best in cleaning, dining, and automotive services.</p>
-      <a routerLink="/contact" class="btn btn-primary">Contact Us</a>
+      <h2 class="cta-heading">Ready to Experience Station?</h2>
+      <p class="cta-description">Join us today and discover the best in cleaning, dining, and automotive services.</p>
+      <a routerLink="/contact-us" class="btn btn-primary">Contact Us</a>
     </div>
   </section>
 </main>
+
 <app-footer></app-footer>

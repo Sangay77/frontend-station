@@ -1,8 +1,7 @@
-<app-header></app-header>
-
 <div class="contact-container">
   <h2>Contact Us</h2>
-  
+  <p class="subtitle">We'd love to hear from you! Send us a message.</p>
+
   <form (ngSubmit)="submitContactForm()" class="contact-form">
     <div class="form-group">
       <label for="name">Name</label>
@@ -64,5 +63,3 @@
     <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
   </form>
 </div>
-
-<app-footer></app-footer>

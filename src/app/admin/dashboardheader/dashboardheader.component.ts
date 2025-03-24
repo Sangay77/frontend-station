@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { faBell, faSearch, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ContactusService } from '../../services/contactus.service';
 
 @Component({
   selector: 'app-dashboardheader',
@@ -14,18 +15,20 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./dashboardheader.component.css'],
 })
 export class DashboardheaderComponent implements OnInit {
-  username = ''; 
+  username = '';
   faBell = faBell; // Notification bell icon
   faSearch = faSearch; // Search icon
   faSignOut = faSignOutAlt; // Logout icon
 
-  messageCount=1;
-  notificationCount=2;
+  messageCount = 0;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
+
+  contactService = inject(ContactusService)
 
   ngOnInit(): void {
     this.GetLoginUser(); // Fetch the logged-in user's username
+    this.getMessageCount();
   }
 
   onLogout() {
@@ -45,4 +48,21 @@ export class DashboardheaderComponent implements OnInit {
     // Retrieve the username from localStorage
     this.username = localStorage.getItem('username') || 'Guest'; // Fallback to 'Guest' if username is not found
   }
+
+
+  getMessageCount() {
+    this.contactService.getNewMessageCount().subscribe({
+      next: (count) => {
+        this.messageCount = count;  // Assign the value to messageCount
+      },
+      error: (err) => {
+        console.error('Error fetching message count:', err);
+      },
+    });
+  }
+}
+
+
+function getMessageCount() {
+  throw new Error('Function not implemented.');
 }

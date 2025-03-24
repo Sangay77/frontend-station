@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { ContactUs } from '../../common/contactus';
 import { ContactusService } from '../../services/contactus.service';
-import { FooterComponent } from '../footer/footer.component';
-import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -11,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css'],
   standalone:true,
-  imports:[FooterComponent,HeaderComponent,CommonModule,FormsModule]
+  imports:[CommonModule,FormsModule]
 })
 export class ContactComponent {
   contact: ContactUs = {

@@ -1,19 +1,20 @@
 import { Component, inject } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
-import { FooterComponent } from '../footer/footer.component';
-import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ManagePostService } from '../../services/manage-post.service';
 import { faBroom, faUtensils, faCar, faHome, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Post } from '../../common/post';
-import { PostCategory } from '../../common/postCategory';
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../common/Product';
+import { ProductCategoryService } from '../../services/product.category.service';
+import { ProductCategory } from '../../common/productCategory';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, RouterLink, FontAwesomeModule, CommonModule, FormsModule],
+  imports: [FontAwesomeModule, CommonModule, FormsModule,RouterLink],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
@@ -25,12 +26,21 @@ export class HomeComponent {
   faEnvelope = faEnvelope;
 
   posts: Post[] = [];
+  categories: ProductCategory[] = [];
   groupedPosts: { [key: string]: Post[] } = {}; // Correct type definition
+    products: Product[] = []; // Array to store products
+
+    constructor(private categoryService: ProductCategoryService) {}
+  
 
   postService = inject(ManagePostService)
+  productService=inject(ProductService)
 
   ngOnInit(): void {
     this.fetchPosts(); // Fetch posts on component initialization
+    this.fetchProducts(); // Fetch products when the component initializes
+    this.fetchCategories();
+
   }
 
   fetchPosts(): void {
@@ -57,5 +67,38 @@ export class HomeComponent {
 
   toggleReadMore(post: Post): void {
     post.showFullContent = !post.showFullContent;
+  }
+
+   // Fetch all products
+   fetchProducts(): void {
+    this.productService.getAllProducts().subscribe({
+      next: (data) => {
+        this.products = data; // Assign fetched products to the array
+      },
+      error: (err) => console.error('Error fetching products:', err),
+    });
+  }
+
+   // Add to Cart Method
+   addToCart(product: Product): void {
+    console.log('Added to cart:', product);
+    
+  }
+
+  fetchCategories(): void {
+    this.categoryService.getAllCategories().subscribe((data) => {
+      this.categories = data;
+    });
+  }
+
+  fetchProductsByCategory(categoryId: number): void {
+    this.productService.getProductsByCategory(categoryId).subscribe({
+      next: (data) => {
+        this.products = data; // Assign fetched products to the array
+      },
+      error: (error) => {
+        console.error('Error fetching products:', error);
+      },
+    });
   }
 }

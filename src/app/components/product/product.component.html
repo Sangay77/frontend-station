@@ -1,0 +1,69 @@
+<main>
+    <!-- Status Messages -->
+    <div *ngIf="statusMessage" class="status-message" [ngClass]="statusMessageType">
+      {{ statusMessage }}
+      <span class="close-message" (click)="clearStatusMessage()">&times;</span>
+    </div>
+  
+    <section class="products-section">
+      <div class="container">
+        <h2 class="section-title">All Products</h2>
+        <button class="btn-add-product" (click)="openAddModal()">Add Product</button>
+        <div class="row">
+          <div *ngFor="let product of products" class="col-lg-4 col-md-6">
+            <div class="product-card">
+              <h3>{{ product.name }}</h3>
+              <p><strong>Price:</strong> ${{ product.price }}</p>
+              <p><strong>Category:</strong> {{ product.category.name }}</p>
+              <img *ngIf="product.image" [src]="'data:image/jpeg;base64,' + product.image" alt="{{ product.name }}" class="product-image" />
+              <div class="product-actions">
+                <button class="btn-update" (click)="openUpdateModal(product)">Update</button>
+                <button class="btn-delete" (click)="deleteProduct(product.id)">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Add/Update Product Modal -->
+    <div class="modal" [ngClass]="{ 'modal-open': isModalOpen }">
+      <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h3>{{ isUpdateMode ? 'Update Product' : 'Add Product' }}</h3>
+        <form (ngSubmit)="isUpdateMode ? updateProduct() : addProduct()">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" [(ngModel)]="selectedProduct.name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" id="price" [(ngModel)]="selectedProduct.price" name="price" required>
+          </div>
+          <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" [(ngModel)]="selectedProduct.quantity" name="quantity" required>
+          </div>
+          <div class="form-group">
+            <label for="available">Available</label>
+            <input type="checkbox" id="available" [(ngModel)]="selectedProduct.available" name="available">
+          </div>
+
+          <div class="form-group">
+            <label for="categoryId" class="form-label">Category</label>
+            <select id="categoryId" class="form-control" [(ngModel)]="selectedProduct.category.id" name="categoryId" required>
+              <option *ngFor="let category of productCategories" [value]="category.id">
+                {{ category.name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" id="image" (change)="onFileChange($event)" name="image">
+          </div>
+          <button type="submit" class="btn-submit">{{ isUpdateMode ? 'Update' : 'Add' }}</button>
+        </form>
+      </div>
+    </div>
+  </main>

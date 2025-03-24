@@ -18,4 +18,8 @@ export class ContactusService {
   getAllMessages(): Observable<ContactUs[]> {
     return this.http.get<ContactUs[]>(`${this.baseURL}`);
   }
+
+  getNewMessageCount():Observable<any>{
+    return this.http.get(`${this.baseURL}/new-message-count`)
+  }
 }

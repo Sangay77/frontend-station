@@ -1,0 +1,44 @@
+<main>
+  <!-- Status Messages -->
+  <div *ngIf="statusMessage" class="status-message" [ngClass]="statusMessageType">
+    {{ statusMessage }}
+    <span class="close-message" (click)="clearStatusMessage()">&times;</span>
+  </div>
+
+  <section class="categories-section">
+    <div class="container">
+      <h2 class="section-title">All Categories</h2>
+      <button class="btn-add-category" (click)="openAddModal()">Add Category</button>
+      <div class="row">
+        <div *ngFor="let category of categories" class="col-lg-4 col-md-6">
+          <div class="category-card">
+            <h3>{{ category.name }}</h3>
+            <img *ngIf="category.image" [src]="'data:image/jpeg;base64,' + category.image" alt="{{ category.name }}" class="category-image" />
+            <div class="category-actions">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Add/Update Product Modal -->
+    <div class="modal" [ngClass]="{ 'modal-open': isModalOpen }">
+      <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h3>{{ isUpdateMode ? 'Update Category' : 'Add Category' }}</h3>
+        <form (ngSubmit)="isUpdateMode ? updateCategory() : addCategory()">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" [(ngModel)]="selectedCategory.name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" id="image" (change)="onFileChange($event)" name="image">
+          </div>
+          <button type="submit" class="btn-submit">{{ isUpdateMode ? 'Update' : 'Add' }}</button>
+        </form>
+      </div>
+    </div>
+
+</main>

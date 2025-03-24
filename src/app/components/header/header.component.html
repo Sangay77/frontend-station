@@ -1,11 +1,40 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<header class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
   <div class="container">
-
+    <!-- Logo -->
     <a class="navbar-brand" href="/">
-      <fa-icon [icon]="faHome"></fa-icon> <!-- Home icon -->
-      Home
+      <img src="assets/images/logo.png" alt="Logo" class="logo" />
     </a>
-    <!-- Navbar Toggler for Mobile -->
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" class="search-input" placeholder="Search for products" />
+      <button class="search-btn">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/orders">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/v1/login">Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/help">Help</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Cart -->
+    <div class="cart">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="cart-count">0</span>
+    </div>
+
+    <!-- Hamburger Menu for Mobile -->
     <button
       class="navbar-toggler"
       type="button"
@@ -17,27 +46,5 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <!-- Navigation Links and Search Bar -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-     
-
-      <!-- Navigation Links -->
-      <ul class="navbar-nav ms-auto">
-        
-
-        <!-- Login/Register -->
-        <li class="nav-item">
-          <a class="nav-link" href="/login">
-            <i class="fas fa-sign-in-alt"></i> Login
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/register">
-            <i class="fas fa-user-plus"></i> Register
-          </a>
-        </li>
-      </ul>
-    </div>
   </div>
-</nav>
+</header>

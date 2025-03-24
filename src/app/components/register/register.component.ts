@@ -1,6 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
-import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -14,7 +12,7 @@ import { of } from 'rxjs';
   standalone: true,
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  imports: [HeaderComponent, FormsModule, FooterComponent, CommonModule],
+  imports: [FormsModule, CommonModule],
 })
 export class RegisterComponent {
   usermodel = new User(); // User model (without confirmPassword)

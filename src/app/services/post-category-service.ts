@@ -10,7 +10,7 @@ import { ApiResponse } from '../common/ApiResponse';
 })
 export class PostCategoryService {
 
-    private baseURL: string = "http://localhost:9090/api/v1/categories";
+    private baseURL: string = "http://localhost:9090/post/v1/post-category";
     private http = inject(HttpClient);
     private router = inject(Router);
     

@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<div class="stock-container mx-auto max-w-6xl p-6">
+  <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center">
+    Live Market Data
+  </h2>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
+      <thead>
+        <tr class="bg-gray-100 text-gray-700 uppercase text-sm leading-normal">
+          <th class="py-3 px-6 text-left">Symbol</th>
+          <th class="py-3 px-6 text-left">Price</th>
+          <th class="py-3 px-6 text-left">Date</th>
+          <th class="py-3 px-6 text-left">Volume</th>
+          <th class="py-3 px-6 text-left">Value</th>
+          <th class="py-3 px-6 text-left">Current Price</th>
+          <th class="py-3 px-6 text-left">Status</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-700 text-sm">
+        <tr *ngFor="let stock of stocks" 
+            class="border-b border-gray-200 hover:bg-gray-100 transition duration-200">
+          <td class="py-4 px-6">{{ stock.symbol }}</td>
+
+          <!-- Apply color formatting based on price -->
+          <td class="py-4 px-6 font-semibold"
+              [ngClass]="stock.price < 0 ? 'text-red-600' : 'text-green-600'">
+            {{ stock.price | currency }}
+          </td>
+
+          <td class="py-4 px-6">{{ stock.date }}</td>
+          <td class="py-4 px-6">{{ stock.volume }}</td>
+          <td class="py-4 px-6">{{ stock.value | currency }}</td>
+
+          <!-- Apply color formatting based on current price -->
+          <td class="py-4 px-6 font-semibold"
+              [ngClass]="stock.currentPrice < 0 ? 'text-red-600' : 'text-green-600'">
+            {{ stock.currentPrice | currency }}
+          </td>
+
+          <!-- Status Badge -->
+          <td class="py-4 px-6">
+            <span 
+              class="px-3 py-1 rounded-full text-xs font-medium"
+              [ngClass]="{
+                'bg-green-200 text-green-700': stock.trsstatus === 'Active',
+                'bg-red-200 text-red-700': stock.trsstatus === 'Inactive',
+                'bg-yellow-200 text-yellow-700': stock.trsstatus === 'Pending'
+              }">
+              {{ stock.trsstatus }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-footer></app-footer>

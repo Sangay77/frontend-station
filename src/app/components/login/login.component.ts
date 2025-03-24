@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../common/user.model';
 import { Router } from '@angular/router';
-import { HeaderComponent } from '../header/header.component';
-import { FooterComponent } from '../footer/footer.component';
+
 
 
 @Component({
@@ -13,7 +12,7 @@ import { FooterComponent } from '../footer/footer.component';
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [CommonModule, FormsModule,HeaderComponent,FooterComponent],
+  imports: [CommonModule, FormsModule],
   providers: [AuthService]  // ✅ Ensure AuthService is available
 })
 export class LoginComponent {

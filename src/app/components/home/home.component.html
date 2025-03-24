@@ -1,80 +1,86 @@
-<app-header></app-header>
-
+<br><br><br>
 <main>
   <!-- Hero Section -->
   <section class="hero-section">
-    <div class="container">
-      <div class="hero-content text-center">
-        <h1 class="hero-title">Bhutan Financial Switch (BFS)</h1>
-        <p class="hero-description lead">
-          Create a one-stop hub offering a range of services that cater to both everyday and specialized needs, including high-quality cleaning, great dining, entertainment, and reliable automotive services.
-        </p>
-        <div class="cta-buttons">
-          <a routerLink="/ecopure" class="btn btn-primary">Explore EcoPure</a>
-          <a routerLink="/druk-station" class="btn btn-secondary">Visit Druk Station</a>
-          <a routerLink="/workshop" class="btn btn-tertiary">Learn About Workshop</a>
+    <div class="hero-overlay">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Welcome to Our Store</h1>
+          <p>Discover the best products at unbeatable prices.</p>
+          <a href="#products-section" class="btn-cta">Shop Now</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Services Section -->
-  <section *ngFor="let category of (groupedPosts | keyvalue)" class="services-section">
+  <!-- Featured Products Section -->
+  <section id="products-section" class="products-section">
     <div class="container">
-      <h2 class="section-title">{{ category.key }}</h2>
+      <h2 class="section-title">Featured Products</h2>
       <div class="row">
-        <!-- Loop through posts of this category -->
-        <div *ngFor="let post of category.value" class="col-lg-4 col-md-6">
-          <div class="service-card">
-        
-            <h3>{{ post.title }}</h3>
-            <p>
-              {{ post.showFullContent ? post.content : (post.content | slice:0:150) }}
-              <span (click)="toggleReadMore(post)" class="read-more-link">
-                {{ post.showFullContent ? 'Read Less' : 'Read More' }}
-              </span>
-            </p>
+        <div *ngFor="let product of products" class="col-lg-3 col-md-4 col-sm-6">
+          <div class="product-card">
+            <div class="product-image-container">
+              <img *ngIf="product.image" [src]="'data:image/jpeg;base64,' + product.image" alt="{{ product.name }}" class="product-image" />
+            </div>
+            <div class="product-details">
+              <h3>{{ product.name }}</h3>
+              <p><strong>Price:</strong> ${{ product.price }}</p>
+              <button class="btn-add-to-cart" (click)="addToCart(product)">Add to Cart</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Testimonials Section -->
-  <section class="testimonials-section">
-    <div class="container">
-      <h2 class="section-title">What Our Customers Say</h2>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="testimonial-card">
-            <p>"EcoPure did an amazing job cleaning our office. Highly recommend their services!"</p>
-            <p class="author">- John Doe</p>
-          </div>
+ <!-- Categories Section -->
+<section class="categories-section">
+  <div class="container">
+    <h2 class="section-title">Shop by Category</h2>
+    <div class="row">
+      <div *ngFor="let category of categories" class="col-lg-3 col-md-4 col-sm-6">
+        <div class="category-card" (click)="fetchCategories()">
+          <h3>{{ category.name }}</h3>
+          <img *ngIf="category.image" [src]="'data:image/jpeg;base64,' + category.image" alt="{{ category.name }}" class="category-image" />
+          <a [routerLink]="['/category', category.id]" class="btn-category">Explore</a>
         </div>
-        <div class="col-md-4">
-          <div class="testimonial-card">
-            <p>"Druk Station is my favorite spot for dinner and karaoke. Great food and atmosphere!"</p>
-            <p class="author">- Jane Smith</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products Section -->
+<section id="products-section" class="products-section">
+  <div class="container">
+    <h2 class="section-title">Featured Products</h2>
+    <div class="row">
+      <div *ngFor="let product of products" class="col-lg-3 col-md-4 col-sm-6">
+        <div class="product-card">
+          <div class="product-image-container">
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="testimonial-card">
-            <p>"The Station Workshop team fixed my car quickly and at a reasonable price. Thank you!"</p>
-            <p class="author">- Mike Johnson</p>
+          <div class="product-details">
+            <h3>{{ product.name }}</h3>
+            <p><strong>Price:</strong> ${{ product.price }}</p>
+            <button class="btn-add-to-cart" (click)="addToCart(product)">Add to Cart</button>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Call-to-Action Section -->
   <section class="cta-section">
     <div class="container">
-      <h2 class="cta-heading">Ready to Experience Station?</h2>
-      <p class="cta-description">Join us today and discover the best in cleaning, dining, and automotive services.</p>
-      <a routerLink="/contact-us" class="btn btn-primary">Contact Us</a>
+      <div class="cta-content">
+        <h2>Share your feedback</h2>
+        <p>Let us know how should we improve?</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Leave us feedback message" required />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </div>
   </section>
 </main>
-
-<app-footer></app-footer>

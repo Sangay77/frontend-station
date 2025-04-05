@@ -35,6 +35,7 @@ export class HomeComponent {
 
   postService = inject(ManagePostService)
   productService=inject(ProductService)
+  productCategoryService=inject(ProductCategoryService)
 
   ngOnInit(): void {
     this.fetchPosts(); // Fetch posts on component initialization
@@ -85,9 +86,13 @@ export class HomeComponent {
     
   }
 
-  fetchCategories(): void {
-    this.categoryService.getAllCategories().subscribe((data) => {
-      this.categories = data;
+   // Fetch product caegoties categories
+   fetchCategories(): void {
+    this.productCategoryService.getAllCategories().subscribe({
+      next: (data: any) => {
+        this.categories = data.data; // Assign fetched categories to the array
+      },
+      error: (err) => console.error('Error fetching categories:', err),
     });
   }
 

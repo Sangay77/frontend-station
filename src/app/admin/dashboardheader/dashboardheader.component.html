@@ -1,0 +1,38 @@
+<header class="dashboard-header">
+  <div class="container-fluid">
+    <div class="row align-items-center justify-content-between">
+
+      <!-- Empty space for alignment -->
+      <div class="col-md-3"></div>
+
+      <!-- Search Bar in Center -->
+      <div class="col-md-6 text-center">
+        <div class="search-bar">
+          <input type="text" class="form-control" placeholder="Search..." />
+          <button class="btn btn-search" type="button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Icons & User Info on Right -->
+      <div class="col-md-3 text-end">
+        <ul class="header-icons d-flex align-items-center justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="fas fa-envelope"></i>
+              <span class="badge bg-danger">{{ messageCount }}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link logout" href="#" (click)="onLogout()">
+              <i class="fas fa-sign-out-alt"></i>
+            </a>
+          </li>
+          <!-- Username on the extreme right -->
+          <span class="username ms-3">Login as {{ username }}</span>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>

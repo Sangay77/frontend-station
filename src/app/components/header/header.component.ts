@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faHome, faBroom, faUtensils, faCar, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { RouterLink } from '@angular/router';
-
+import { faHomeAlt, faBroom, faUtensils, faCar, faEnvelope, faHome } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; // Import FontAwesomeModule
 
 
 @Component({
@@ -10,7 +8,8 @@ import { RouterLink } from '@angular/router';
   standalone:true,
   // imports: [FontAwesomeModule,RouterLink],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
+  imports:[FontAwesomeModule]
 })
 export class HeaderComponent {
 

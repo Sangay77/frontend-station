@@ -12,7 +12,7 @@ export class AuthService {
   isLoggedIn: boolean = false;
 
 
-  private baseURL: string = "http://localhost:9090";
+  private baseURL: string = "http://localhost:9090/auth/v1";
   private http = inject(HttpClient);
   private router = inject(Router);
 

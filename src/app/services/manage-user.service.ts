@@ -10,7 +10,7 @@ export class ManageUserService {
   constructor() { }
 
   http=inject(HttpClient);
-  private baseURL: string = "http://localhost:9090";
+  private baseURL: string = "http://localhost:9090/auth/v1";
 
 
   getAllUsers(): Observable<any[]> {

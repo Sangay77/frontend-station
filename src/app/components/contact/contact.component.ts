@@ -1,45 +1,55 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { ContactUs } from '../../common/contactus';
+import { ContactusService } from '../../services/contactus.service';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common'; // Import CommonModule
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faBroom, faUtensils, faCar, faHome, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-contact',
-  standalone: true,
+  selector: 'app-contact-us',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css'],
-  imports: [
-    FormsModule,
-    CommonModule, // Add CommonModule here
-    FontAwesomeModule,
-  ],
+  standalone:true,
+  imports:[CommonModule,FormsModule]
 })
 export class ContactComponent {
-  faBroom = faBroom;
-  faUtensils = faUtensils;
-  faCar = faCar;
-  faHome = faHome;
-  faEnvelope = faEnvelope;
-
-  // Define the form model
-  contactForm = {
+  contact: ContactUs = {
     name: '',
     email: '',
     subject: '',
     message: '',
   };
 
-  // Handle form submission
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-      console.log('Form Submitted', this.contactForm);
-      alert("Thank you for contacting us! We'll get back to you soon.");
-      form.resetForm(); // Reset the form after submission
-    } else {
-      console.error('Form is invalid.');
-      alert('Please fill out the form correctly.');
+  isLoading: boolean = false;
+  successMessage: string = '';
+  errorMessage: string = '';
+
+  constructor(private contactService: ContactusService) {}
+
+  submitContactForm() {
+    if (
+      this.contact.name.trim() === '' ||
+      this.contact.email.trim() === '' ||
+      this.contact.message.trim() === ''
+    ) {
+      this.errorMessage = 'Please fill out all fields.';
+      return;
     }
+
+    this.isLoading = true;
+    this.contactService.contactUs(this.contact).subscribe({
+      next: (response) => {
+        this.successMessage = response.message; // Access the "message" from the response
+        this.errorMessage = '';
+        this.contact = { name: '', email: '', subject: '', message: '' }; // Clear the form
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Error submitting message:', error);
+        this.errorMessage =
+          'Failed to submit your message. Please try again later.';
+        this.successMessage = '';
+        this.isLoading = false;
+      },
+    });
   }
 }

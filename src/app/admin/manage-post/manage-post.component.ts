@@ -1,105 +1,135 @@
 import { Component, OnInit } from '@angular/core';
 import { ManagePostService } from '../../services/manage-post.service';
-import { ECPPost } from '../../common/ecp-post.model';
+import { Post } from '../../common/post';
+import { PostCategory } from '../../common/postCategory';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { PostCategoryService } from '../../services/post-category-service';
 
 @Component({
   selector: 'app-manage-post',
   templateUrl: './manage-post.component.html',
   styleUrls: ['./manage-post.component.css'],
-  imports:[CommonModule,FormsModule]
+  standalone: true,
+  imports: [CommonModule, FormsModule],
 })
 export class ManagePostComponent implements OnInit {
-  posts: ECPPost[] = [];
-  currentPost: ECPPost = { id: 0, serviceName: '', description: '', ecoFriendly: false };
+  posts: Post[] = [];
+  categories: PostCategory[] = [];
+  currentPost: Post = {
+    id: 0,
+    title: '',
+    content: '',
+    postCategory: { id: 0, name: '' },
+  };
   isModalOpen = false;
   isEditing = false;
   message = '';
   error = false;
 
-  constructor(private postService: ManagePostService) {}
+  constructor(private postService: ManagePostService, private postCategoryService:PostCategoryService) {}
 
   ngOnInit(): void {
+    console.log("Component initialized"); // Debugging
     this.fetchPosts();
+    this.fetchCategories();
   }
 
   fetchPosts(): void {
     this.postService.getAllPosts().subscribe({
       next: (data) => (this.posts = data),
-      error: (err) => console.error('Error fetching posts:', err),
+      error: (err) => this.displayMessage('Error fetching posts', true),
     });
   }
 
+  fetchCategories(): void {
+    this.postCategoryService.getCategories().subscribe({
+      next: (data) => {
+        console.log("Fetched Categories:", data); // Debugging
+        this.categories = data;
+      },
+      error: (err) => this.displayMessage('Error fetching categories', true),
+    });
+  }
+  
+
   openAddPostModal(): void {
-    this.currentPost = { id: 0, serviceName: '', description: '', ecoFriendly: false };
+    console.log("Opening Add Modal"); // Debugging
+    this.currentPost = {
+      id: 0,
+      title: '',
+      content: '',
+      postCategory: { id: 0, name: '' }, // Reset postCategory
+    };
     this.isEditing = false;
     this.isModalOpen = true;
   }
 
-  openEditPostModal(post: ECPPost): void {
-    this.currentPost = { ...post };
+  openEditPostModal(post: Post): void {
+    console.log("Opening Edit Modal", post); // Debugging
+    this.currentPost = { ...post }; // Create a copy of the post
     this.isEditing = true;
     this.isModalOpen = true;
   }
 
   closeModal(): void {
+    console.log("Closing Modal"); // Debugging
     this.isModalOpen = false;
-    this.isEditing = false; // Reset editing state
+    this.isEditing = false;
   }
 
   addPost(): void {
-    console.log('Payload:', this.currentPost); // Log the payload
+    console.log('Adding new post:', this.currentPost); // Debugging
+    if (!this.currentPost.postCategory.id) {
+      this.displayMessage('Please select a valid category', true);
+      return;
+    }
+
     this.postService.addPost(this.currentPost).subscribe({
-      next: (newPost) => {
-        this.posts.push(newPost); // Add the new post with the generated ID
-        this.message = 'Post added successfully';
-        this.error = false;
+      next: (response) => {
+        console.log('Add response:', response); // Debugging
+        this.posts.push(response.post);
+        this.displayMessage(response.message, false);
         this.closeModal();
       },
       error: (err) => {
-        console.error('Error adding post:', err); // Log the actual error
-        this.message = 'Error adding post: ' + (err.error?.message || err.message); // Display detailed error
-        this.error = true;
+        console.error('Error adding post:', err); // Debugging
+        this.displayMessage('Error adding post: ' + err.message, true);
       },
     });
   }
+
   updatePost(): void {
     this.postService.updatePost(this.currentPost.id, this.currentPost).subscribe({
-      next: (updatedPost) => {
-        const index = this.posts.findIndex(p => p.id === updatedPost.id);
+      next: (response) => {
+        const index = this.posts.findIndex((p) => p.id === response.post.id);
         if (index !== -1) {
-          this.posts[index] = updatedPost;
+          this.posts[index] = response.post;
         }
-        this.message = 'Post updated successfully';
-        this.error = false;
+        this.displayMessage(response.message, false);
         this.closeModal();
       },
-      error: (err) => {
-        this.message = 'Error updating post';
-        this.error = true;
-      }
+      error: (err) => this.displayMessage('Error updating post: ' + err.message, true),
     });
   }
-
-
 
   deletePost(id: number): void {
     if (confirm('Are you sure you want to delete this post?')) {
       this.postService.deletePost(id).subscribe({
-        next: () => {
+        next: (response) => {
           this.posts = this.posts.filter((p) => p.id !== id);
-          this.message = 'Post deleted successfully';
-          this.error = false;
+          this.displayMessage(response.message, false);
         },
-        error: (err) => {
-          console.error('Error deleting post:', err); // Log the actual error
-          this.message = 'Error deleting post: ' + (err.error?.message || err.message); // Display detailed error
-          this.error = true;
-        },
+        error: (err) => this.displayMessage('Error deleting post: ' + err.message, true),
       });
     }
   }
 
+  displayMessage(msg: string, isError: boolean): void {
+    this.message = msg;
+    this.error = isError;
+    setTimeout(() => {
+      this.message = '';
+    }, 5000);
+  }
 }
